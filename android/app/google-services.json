@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "599556060774",
+    "project_id": "yuhealth-b6189",
+    "storage_bucket": "yuhealth-b6189.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599556060774:android:e6545cff568ec56c555fa7",
+        "android_client_info": {
+          "package_name": "com.example.verygoodcore.yu_health_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599556060774-snhfl5ksnio5gqirbqg5okfbt2cf6k3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEokDfXuPmMTm3IxVKo06VeyAVnOHtidk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599556060774-snhfl5ksnio5gqirbqg5okfbt2cf6k3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599556060774:android:5d3eb616852e3e2e555fa7",
+        "android_client_info": {
+          "package_name": "com.premjithk.yuhealth.yu_health"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599556060774-snhfl5ksnio5gqirbqg5okfbt2cf6k3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEokDfXuPmMTm3IxVKo06VeyAVnOHtidk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599556060774-snhfl5ksnio5gqirbqg5okfbt2cf6k3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
