@@ -52,7 +52,6 @@ class _LoginPageState extends State<LoginPage> {
                     context,
                     title: state.title,
                     message: state.message,
-                    showDragHandle: true,
                   );
                 }
               },
@@ -101,7 +100,6 @@ class _LoginPageState extends State<LoginPage> {
                                 context,
                                 title: 'Invalid Submission',
                                 message: 'Please enter valid credentials',
-                                showDragHandle: true,
                               );
                             }
                           },

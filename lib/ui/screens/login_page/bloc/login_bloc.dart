@@ -13,24 +13,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   FutureOr<void> _loginWithEmailAndPassword(
-    LoginEvent event,
+    LoginFormSubmittedEvent event,
     Emitter<LoginState> emit,
-  ) {
+  ) async {
     emit(LoginLoading());
-    Future.delayed(Durations.long3);
-    if (event is LoginFormSubmittedEvent) {
-      final email = event.email;
-      final password = event.password;
-      if (email == 'johnwick@gmail.com' && password == 'john123') {
-        emit(LoginSuccess());
-      } else {
-        emit(
-          const LoginFailed(
-            title: 'Login Failed',
-            message: 'Invalid Email Or Password',
-          ),
-        );
-      }
+
+    await Future.delayed(const Duration(milliseconds: 2000));
+
+    final email = event.email;
+    final password = event.password;
+    if (email == 'johnwick@gmail.com' && password == 'john123') {
+      emit(LoginSuccess());
+    } else {
+      emit(
+        const LoginFailed(
+          title: 'Login Failed',
+          message: 'Invalid Email Or Password',
+        ),
+      );
     }
   }
 }
