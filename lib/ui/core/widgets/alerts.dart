@@ -3,16 +3,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class YuBottomSheets {
-  static errorBottomSheet(
+  static showErrorBottomSheet(
     BuildContext context, {
     required String title,
     required String message,
     void Function()? onClosing,
+    bool? showDragHandle,
   }) {
     return showModalBottomSheet(
+      enableDrag: true,
+      showDragHandle: showDragHandle,
       backgroundColor: Colors.transparent,
       context: context,
       builder: (context) => BottomSheet(
+        showDragHandle: showDragHandle ?? true,
+        enableDrag: true,
         elevation: 0,
         shadowColor: Colors.transparent,
         shape: _alertBottomSheetShape(),

@@ -15,6 +15,7 @@ class _DashboardPageState extends State<DashboardPage> {
       child: SingleChildScrollView(
         padding: PageLayout.pagePadding,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Dashboard'),
           ],
