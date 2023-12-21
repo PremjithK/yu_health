@@ -1,9 +1,10 @@
 // import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yu_health/firebase_options.dart';
 import 'package:yu_health/ui/core/config/theme.dart';
-import 'package:yu_health/ui/screens/home_page/home_page.dart';
 import 'package:yu_health/ui/screens/login_page/bloc/login_bloc.dart';
 import 'package:yu_health/ui/screens/login_page/login_page.dart';
 import 'package:yu_health/ui/screens/signup_page/bloc/signup_bloc.dart';
@@ -12,9 +13,11 @@ import 'package:yu_health/ui/screens/signup_page/bloc/signup_bloc.dart';
 void main() async {
   // sharedprefs loading
   // dotenv loading
-  // firebase loading
-
+  // // firebase loading
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
           theme: lightTheme,
           darkTheme: darkTheme,
           themeMode: ThemeMode.system,
-          home: LoginPage(),
+          home: const LoginPage(),
         ),
       ),
     );

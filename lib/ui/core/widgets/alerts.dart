@@ -29,32 +29,35 @@ class YuBottomSheets {
               color: Colors.white,
             ),
             Gap(10.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0,
-                    height: 1,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0,
+                      height: 1,
+                    ),
                   ),
-                ),
-                Gap(2.h),
-                Text(
-                  message,
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.5),
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.normal,
-                    overflow: TextOverflow.fade,
+                  Gap(2.h),
+                  Text(
+                    message,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.5),
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.normal,
+                      overflow: TextOverflow.fade,
+                      height: 1,
+                    ),
+                    maxLines: 3,
                   ),
-                  maxLines: 3,
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

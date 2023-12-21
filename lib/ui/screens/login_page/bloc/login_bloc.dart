@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:yu_health/domain/repositories/auth_repository.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -18,19 +18,36 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoading());
 
-    await Future.delayed(const Duration(milliseconds: 2000));
+    // await Future.delayed(const Duration(milliseconds: 2000));
 
     final email = event.email;
     final password = event.password;
-    if (email == 'johnwick@gmail.com' && password == 'john123') {
-      emit(LoginSuccess());
-    } else {
+    final result = await AuthRepository().login(email, password);
+    print(result);
+    // Error handling
+    if (result == 'user-not-found') {
       emit(
         const LoginFailed(
           title: 'Login Failed',
-          message: 'Invalid Email Or Password',
+          message: 'This user does not exist',
         ),
       );
+    } else if (result == 'wrong-password') {
+      emit(
+        const LoginFailed(
+          title: 'Login Failed',
+          message: 'Incorrect password',
+        ),
+      );
+    } else if (result == 'invalid-credential') {
+      emit(
+        const LoginFailed(
+          title: 'Login Failed',
+          message: 'Invalid credentials, Please check your email and password',
+        ),
+      );
+    } else if (result == null) {
+      emit(LoginSuccess());
     }
   }
 }
