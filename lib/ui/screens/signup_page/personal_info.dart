@@ -13,14 +13,12 @@ class PersonalInfoPart extends StatelessWidget {
     super.key,
     required this.firstNameController,
     required this.lastNameController,
-    required this.phoneController,
     required this.pageController,
     required this.formKey,
   });
 
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
-  final TextEditingController phoneController;
   final PageController pageController;
   final GlobalKey<FormState> formKey;
   // dob

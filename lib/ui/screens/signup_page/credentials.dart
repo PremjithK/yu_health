@@ -8,6 +8,7 @@ import 'package:yu_health/ui/core/providers/password_visibility_provider.dart';
 import 'package:yu_health/ui/core/utils/validators.dart';
 import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/ui/core/widgets/yu_textfield.dart';
+import 'package:yu_health/ui/screens/signup_page/bloc/signup_bloc.dart';
 
 class CredentialsPart extends StatelessWidget {
   const CredentialsPart({
@@ -17,12 +18,16 @@ class CredentialsPart extends StatelessWidget {
     required this.confirmPasswordController,
     required this.pageController,
     required this.formKey,
+    required this.phoneNumberController,
+    required this.onSubmitted,
   });
   final TextEditingController emailController;
+  final TextEditingController phoneNumberController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
   final PageController pageController;
   final GlobalKey<FormState> formKey;
+  final void Function() onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +43,16 @@ class CredentialsPart extends StatelessWidget {
               prefixIcon: const Icon(Icons.email),
               hint: 'Email',
               validator: (value) => Validators.validateEmail(value),
+              keyboardType: TextInputType.emailAddress,
               controller: emailController,
+            ),
+            Gap(10.h),
+            YuTextField(
+              prefixIcon: const Icon(Icons.email),
+              hint: 'Phone Number',
+              validator: (value) => Validators.validateEmail(value),
+              keyboardType: TextInputType.phone,
+              controller: phoneNumberController,
             ),
             Gap(10.h),
             YuTextField(
@@ -90,7 +104,7 @@ class CredentialsPart extends StatelessWidget {
                     label: 'Sign Up',
                     direction: TextDirection.rtl,
                     icon: const Icon(Icons.arrow_forward),
-                    onPressed: () {},
+                    onPressed: onSubmitted,
                   ),
                 ),
               ],
