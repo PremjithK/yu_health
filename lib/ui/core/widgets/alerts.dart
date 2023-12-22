@@ -44,12 +44,12 @@ class YuBottomSheets {
                       height: 1,
                     ),
                   ),
-                  Gap(2.h),
+                  Gap(5.h),
                   Text(
                     message,
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.5),
-                      fontSize: 13.sp,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.normal,
                       overflow: TextOverflow.fade,
                       height: 1,

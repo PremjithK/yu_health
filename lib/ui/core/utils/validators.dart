@@ -10,6 +10,13 @@ class Validators {
     }
   }
 
+  static String? validateLoginPassword(String? value) {
+    if (value == '' || value == null) {
+      return 'Password cannot be empty';
+    }
+    return null;
+  }
+
   static String? validatePassword(String? value) {
     if (value == '' || value == null) {
       return 'Password cannot be empty';

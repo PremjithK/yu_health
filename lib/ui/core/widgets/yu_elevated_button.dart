@@ -25,6 +25,7 @@ class YuElevatedButton extends StatelessWidget {
     // UI
     if (icon == null) {
       return Container(
+        width: width,
         decoration: _buttonShadow(context),
         child: ElevatedButton(
           onPressed: onPressed,
@@ -34,6 +35,7 @@ class YuElevatedButton extends StatelessWidget {
       );
     } else {
       return Container(
+        width: width,
         decoration: _buttonShadow(context),
         child: ElevatedButton(
           onPressed: onPressed,
@@ -74,6 +76,7 @@ class YuElevatedButtonAlt extends StatelessWidget {
     // UI
     if (icon == null) {
       return Container(
+        width: width,
         decoration: _buttonShadow(context),
         child: ElevatedButton(
           onPressed: onPressed,
@@ -83,6 +86,7 @@ class YuElevatedButtonAlt extends StatelessWidget {
       );
     } else {
       return Container(
+        width: width,
         decoration: _buttonShadow(context),
         child: ElevatedButton(
           onPressed: onPressed,

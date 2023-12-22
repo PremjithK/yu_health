@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:yu_health/ui/core/config/layout.dart';
+import 'package:yu_health/ui/core/providers/password_visibility_provider.dart';
 import 'package:yu_health/ui/core/utils/page_transitions.dart';
 import 'package:yu_health/ui/core/utils/validators.dart';
 import 'package:yu_health/ui/core/widgets/alerts.dart';
@@ -42,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                     context,
                     PageTransitionWrapper(
                       duration: Durations.long1,
-                      page: HomePage(),
+                      page: const HomePage(),
                       transitionType: PageTransitionType.slideLeft,
                       curve: Curves.ease,
                     ),
@@ -64,18 +67,38 @@ class _LoginPageState extends State<LoginPage> {
                   return Column(
                     children: [
                       YuTextField(
+                        controller: _emailController,
                         prefixIcon: const Icon(Icons.email),
                         hint: 'Email',
                         validator: (value) => Validators.validateEmail(value),
-                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       Gap(10.h),
-                      YuTextField(
-                        prefixIcon: const Icon(Icons.lock),
-                        hint: 'Password',
-                        validator: (value) =>
-                            Validators.validatePassword(value),
-                        controller: _passwordController,
+
+                      // Password form field with show/hide button
+                      ChangeNotifierProvider(
+                        create: (context) => ObscurePasswordProvider(),
+                        child: Consumer<ObscurePasswordProvider>(
+                          builder: (context, provider, _) => YuTextField(
+                            controller: _passwordController,
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              onPressed: () => context
+                                  .read<ObscurePasswordProvider>()
+                                  .toggleLoginPasswordVisibility(),
+                              icon: Icon(
+                                provider.loginPasswordHidden
+                                    ? CupertinoIcons.eye_slash_fill
+                                    : CupertinoIcons.eye_fill,
+                              ),
+                            ),
+                            hint: 'Password',
+                            validator: (value) =>
+                                Validators.validateLoginPassword(value),
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: provider.loginPasswordHidden,
+                          ),
+                        ),
                       ),
                       Gap(10.h),
                       YuTextButton(
@@ -83,44 +106,40 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {},
                       ),
                       Gap(10.h),
-                      SizedBox(
-                        width: double.infinity,
-                        child: YuElevatedButton(
-                          label: 'Login',
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              BlocProvider.of<LoginBloc>(context).add(
-                                LoginFormSubmittedEvent(
-                                  email: _emailController.text.trim(),
-                                  password: _passwordController.text.trim(),
-                                ),
-                              );
-                            } else {
-                              YuBottomSheets.showErrorBottomSheet(
-                                context,
-                                title: 'Invalid Submission',
-                                message: 'Please enter valid credentials',
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: YuElevatedButtonAlt(
-                          label: 'Create an account',
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransitionWrapper(
-                                duration: Durations.long1,
-                                page: const SignUpPage(),
-                                transitionType: PageTransitionType.slideLeft,
-                                curve: Curves.ease,
+                      YuElevatedButton(
+                        width: ScreenUtil.defaultSize.width,
+                        label: 'Login',
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            BlocProvider.of<LoginBloc>(context).add(
+                              LoginFormSubmittedEvent(
+                                email: _emailController.text.trim(),
+                                password: _passwordController.text.trim(),
                               ),
                             );
-                          },
-                        ),
+                          } else {
+                            YuBottomSheets.showErrorBottomSheet(
+                              context,
+                              title: 'Invalid Submission',
+                              message: 'Please enter valid credentials',
+                            );
+                          }
+                        },
+                      ),
+                      YuElevatedButtonAlt(
+                        width: ScreenUtil.defaultSize.width,
+                        label: 'Create an account',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            PageTransitionWrapper(
+                              duration: Durations.long1,
+                              page: const SignUpPage(),
+                              transitionType: PageTransitionType.slideLeft,
+                              curve: Curves.ease,
+                            ),
+                          );
+                        },
                       ),
                     ],
                   );
