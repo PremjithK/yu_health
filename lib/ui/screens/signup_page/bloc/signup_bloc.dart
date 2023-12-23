@@ -29,6 +29,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         password: event.password,
         phoneNumber: event.phoneNumber,
       );
+      if (userData != null) {
+        userData.updateDisplayName(event.firstName);
+      }
       emit(SignupSuccess());
     } on FirebaseAuthException catch (e) {
       switch (e.code) {

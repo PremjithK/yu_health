@@ -24,6 +24,8 @@ class YuNavBar extends StatelessWidget {
     final theme = Theme.of(context).colorScheme;
 
     return Container(
+      height: height,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(ButtonLayout.borderRadius * 1.5),
         color: theme.background,

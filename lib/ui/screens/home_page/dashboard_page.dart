@@ -17,7 +17,10 @@ class _DashboardPageState extends State<DashboardPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Dashboard'),
+            Text(
+              'Dashboard',
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
           ],
         ),
       ),

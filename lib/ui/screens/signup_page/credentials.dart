@@ -8,7 +8,6 @@ import 'package:yu_health/ui/core/providers/password_visibility_provider.dart';
 import 'package:yu_health/ui/core/utils/validators.dart';
 import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/ui/core/widgets/yu_textfield.dart';
-import 'package:yu_health/ui/screens/signup_page/bloc/signup_bloc.dart';
 
 class CredentialsPart extends StatelessWidget {
   const CredentialsPart({

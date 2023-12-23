@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yu_health/ui/core/config/text_theme.dart';
 
 //! Custom Font
 const String primaryFont = 'Instrument';
@@ -71,15 +73,6 @@ const darkColorScheme = ColorScheme(
   outlineVariant: Color(0xFF45464F),
   scrim: Color(0xFF000000),
 );
-// Text Theme
-const myTextTheme = TextTheme(
-  labelMedium: TextStyle(
-    fontSize: 12,
-    letterSpacing: 0,
-    fontWeight: FontWeight.w600,
-    fontFamily: primaryFont,
-  ),
-);
 
 TooltipThemeData tooltipTheme = TooltipThemeData(
   decoration: BoxDecoration(
@@ -150,7 +143,7 @@ ThemeData darkTheme = ThemeData(
   fontFamily: primaryFont,
   useMaterial3: true,
   colorScheme: darkColorScheme,
-  textTheme: myTextTheme,
+  textTheme: textThemeLight,
   tooltipTheme: tooltipTheme,
   inputDecorationTheme: inputDecorationThemeDark,
 );
@@ -158,7 +151,7 @@ ThemeData lightTheme = ThemeData(
   fontFamily: primaryFont,
   useMaterial3: true,
   colorScheme: lightColorScheme,
-  textTheme: myTextTheme,
+  textTheme: textThemeLight,
   tooltipTheme: tooltipTheme,
   inputDecorationTheme: inputDecorationThemeLight,
 );

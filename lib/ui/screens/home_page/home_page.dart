@@ -36,8 +36,11 @@ class _HomePageState extends State<HomePage> {
             ),
 
             // NavigationBar
+
+            extendBody: true,
             bottomNavigationBar: YuNavBar(
-              height: 50.h,
+              height: 60.h,
+              width: ScreenUtil.defaultSize.width,
               destinations: const [
                 NavItem(label: 'Home', icon: Icons.home),
                 NavItem(label: 'Doctors', icon: Icons.medical_information),
