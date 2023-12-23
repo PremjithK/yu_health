@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yu_health/ui/core/config/appbar_theme.dart';
 import 'package:yu_health/ui/core/config/text_theme.dart';
 
 //! Custom Font
@@ -79,8 +80,9 @@ TooltipThemeData tooltipTheme = TooltipThemeData(
     color: Colors.grey.shade800,
     borderRadius: BorderRadius.circular(15),
   ),
-  textStyle: const TextStyle(
+  textStyle: TextStyle(
     color: Colors.white,
+    fontSize: 13.sp,
     fontFamily: primaryFont,
   ),
 );
@@ -138,8 +140,8 @@ InputDecorationTheme inputDecorationThemeDark = InputDecorationTheme(
   }),
 );
 
-//& Theme Data variables
 ThemeData darkTheme = ThemeData(
+  appBarTheme: appBarThemeDark,
   fontFamily: primaryFont,
   useMaterial3: true,
   colorScheme: darkColorScheme,
@@ -148,6 +150,7 @@ ThemeData darkTheme = ThemeData(
   inputDecorationTheme: inputDecorationThemeDark,
 );
 ThemeData lightTheme = ThemeData(
+  appBarTheme: appBarThemeLight,
   fontFamily: primaryFont,
   useMaterial3: true,
   colorScheme: lightColorScheme,

@@ -29,12 +29,9 @@ class YuNavBar extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(ButtonLayout.borderRadius * 1.5),
         color: theme.background,
-        boxShadow: [
-          BoxShadow(
-            color: theme.onBackground.withOpacity(0.1),
-            blurRadius: 5,
-          )
-        ],
+        border: Border.all(
+          color: theme.onBackground.withOpacity(0.10),
+        ),
       ),
       margin: EdgeInsets.symmetric(
         horizontal: 20.w,
