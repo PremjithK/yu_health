@@ -15,14 +15,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late String? user;
-
-  @override
-  void initState() {
-    super.initState();
-    user = FirebaseAuth.instance.currentUser!.uid;
-    context.read<ProfileCardCubit>().getProfile(user!);
-  }
+  final user = FirebaseAuth.instance.currentUser!.uid;
 
   final hasBackButton = false;
   @override
@@ -35,11 +28,11 @@ class _ProfilePageState extends State<ProfilePage> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.logout_outlined),
+            icon: const Icon(Icons.logout_outlined),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.settings_outlined),
+            icon: const Icon(Icons.settings_outlined),
           ),
           Gap(15.w),
         ],
@@ -52,21 +45,25 @@ class _ProfilePageState extends State<ProfilePage> {
             Gap(10.h),
 
             // Profile Preview Card
-            BlocBuilder<ProfileCardCubit, ProfileCardState>(
-              builder: (context, state) {
-                if (state is ProfileCardLoading) {
-                  return const ProfileCardLoadingPlaceholder();
-                }
-                if (state is ProfileCardLoaded) {
-                  return ProfileCard(
-                    onTap: () => print('Clicked Profile'),
-                    name: '${state.firstName} ${state.lastName}',
-                    email: state.email,
-                    age: state.dateOfBirth,
-                  );
-                }
-                return const SizedBox();
-              },
+            BlocProvider(
+              lazy: true,
+              create: (context) => ProfileCardCubit()..getProfile(user),
+              child: BlocBuilder<ProfileCardCubit, ProfileCardState>(
+                builder: (context, state) {
+                  if (state is ProfileCardLoading) {
+                    return const ProfileCardLoadingPlaceholder();
+                  }
+                  if (state is ProfileCardLoaded) {
+                    return ProfileCard(
+                      onTap: () => print('Clicked Profile'),
+                      name: '${state.firstName} ${state.lastName}',
+                      email: state.email,
+                      age: state.dateOfBirth,
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
             ),
           ],
         ),

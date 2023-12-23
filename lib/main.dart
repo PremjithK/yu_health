@@ -8,10 +8,7 @@ import 'package:yu_health/ui/core/config/theme.dart';
 import 'package:yu_health/ui/core/utils/auth_state_bloc/auth_bloc.dart';
 import 'package:yu_health/ui/core/utils/page_transitions.dart';
 import 'package:yu_health/ui/screens/home_page/home_page.dart';
-import 'package:yu_health/ui/screens/home_page/sub_pages/profile_page/profile_card_cubit/profile_card_cubit.dart';
-import 'package:yu_health/ui/screens/login_page/bloc/login_bloc.dart';
 import 'package:yu_health/ui/screens/login_page/login_page.dart';
-import 'package:yu_health/ui/screens/signup_page/bloc/signup_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,13 +27,8 @@ class MyApp extends StatelessWidget {
       designSize: const Size(384, 852),
       ensureScreenSize: true,
       minTextAdapt: true,
-      builder: (context, child) => MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => AuthBloc()),
-          BlocProvider(create: (context) => LoginBloc()),
-          BlocProvider(create: (context) => SignupBloc()),
-          BlocProvider(create: (context) => ProfileCardCubit()),
-        ],
+      builder: (context, child) => BlocProvider(
+        create: (context) => AuthBloc(),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'YuHealth for patients',

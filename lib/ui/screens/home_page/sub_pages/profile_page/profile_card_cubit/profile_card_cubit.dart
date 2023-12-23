@@ -1,17 +1,21 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:yu_health/data/constants.dart';
 
 part 'profile_card_state.dart';
 
 class ProfileCardCubit extends Cubit<ProfileCardState> {
   ProfileCardCubit() : super(ProfileCardInitial());
 
-  Future<void> getProfile(String id) async {
+  Future<void> getProfile(String docId) async {
     emit(ProfileCardLoading());
     try {
-      final res =
-          await FirebaseFirestore.instance.collection('users').doc(id).get();
+      // [docID] in this case is the current user's UID
+      final res = await FirebaseFirestore.instance
+          .collection(CollectionNames.users)
+          .doc(docId)
+          .get();
 
       final String firstName = res['firstName'];
       final String lastName = res['lastName'];
@@ -24,6 +28,8 @@ class ProfileCardCubit extends Cubit<ProfileCardState> {
         email: email,
         dateOfBirth: dateOfBirth,
       ));
-    } catch (e) {}
+    } catch (e) {
+      throw Exception(e);
+    } finally {}
   }
 }

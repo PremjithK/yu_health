@@ -43,82 +43,87 @@ class _SignUpPageState extends State<SignUpPage> {
         ChangeNotifierProvider(create: (context) => ObscurePasswordProvider()),
       ],
       builder: (context, _) => Scaffold(
-        body: BlocConsumer<SignupBloc, SignupState>(
-          listener: (context, state) {
-            if (state is SignupFailed) {
-              YuBottomSheets.showErrorBottomSheet(
-                context,
-                title: state.title,
-                message: state.message,
-              );
-            }
-            if (state is SignupSuccess) {
-              Navigator.push(
-                context,
-                PageTransitionWrapper(
-                  duration: Durations.long2,
-                  page: HomePage(),
-                  transitionType: PageTransitionType.slideLeft,
-                  curve: Curves.ease,
+        body: BlocProvider(
+          create: (context) => SignupBloc(),
+          child: BlocConsumer<SignupBloc, SignupState>(
+            listener: (context, state) {
+              if (state is SignupFailed) {
+                YuBottomSheets.showErrorBottomSheet(
+                  context,
+                  title: state.title,
+                  message: state.message,
+                );
+              }
+              if (state is SignupSuccess) {
+                Navigator.push(
+                  context,
+                  PageTransitionWrapper(
+                    duration: Durations.long2,
+                    page: HomePage(),
+                    transitionType: PageTransitionType.slideLeft,
+                    curve: Curves.ease,
+                  ),
+                );
+              }
+            },
+            builder: (context, state) {
+              if (state is SignupLoading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 500.h,
+                      child: PageView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        onPageChanged: (value) {},
+                        controller: _pageController,
+                        children: [
+                          PersonalInfoPart(
+                            formKey: _formKey,
+                            pageController: _pageController,
+                            firstNameController: _firstNameController,
+                            lastNameController: _lastNameController,
+                          ),
+                          CredentialsPart(
+                            formKey: _formKey,
+                            pageController: _pageController,
+                            emailController: _emailController,
+                            passwordController: _passwordController,
+                            confirmPasswordController:
+                                _confirmPasswordController,
+                            phoneNumberController: _phoneController,
+                            onSubmitted: () {
+                              context.read<SignupBloc>().add(
+                                    SignupFormSubmittedEvent(
+                                      firstName:
+                                          _firstNameController.text.trim(),
+                                      lastName: _lastNameController.text.trim(),
+                                      email: _emailController.text.trim(),
+                                      password: _passwordController.text.trim(),
+                                      gender: context
+                                          .read<SegmentedControlProvider>()
+                                          .selectedGender!,
+                                      dateOfBirth: DateTime.now(),
+                                      phoneNumber: double.parse(
+                                          _phoneController.text.trim()),
+                                    ),
+                                  );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               );
-            }
-          },
-          builder: (context, state) {
-            if (state is SignupLoading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            return Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 500.h,
-                    child: PageView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      onPageChanged: (value) {},
-                      controller: _pageController,
-                      children: [
-                        PersonalInfoPart(
-                          formKey: _formKey,
-                          pageController: _pageController,
-                          firstNameController: _firstNameController,
-                          lastNameController: _lastNameController,
-                        ),
-                        CredentialsPart(
-                          formKey: _formKey,
-                          pageController: _pageController,
-                          emailController: _emailController,
-                          passwordController: _passwordController,
-                          confirmPasswordController: _confirmPasswordController,
-                          phoneNumberController: _phoneController,
-                          onSubmitted: () {
-                            context.read<SignupBloc>().add(
-                                  SignupFormSubmittedEvent(
-                                    firstName: _firstNameController.text.trim(),
-                                    lastName: _lastNameController.text.trim(),
-                                    email: _emailController.text.trim(),
-                                    password: _passwordController.text.trim(),
-                                    gender: context
-                                        .read<SegmentedControlProvider>()
-                                        .selectedGender!,
-                                    dateOfBirth: DateTime.now(),
-                                    phoneNumber: double.parse(
-                                        _phoneController.text.trim()),
-                                  ),
-                                );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
+            },
+          ),
         ),
       ),
     );

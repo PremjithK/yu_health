@@ -41,7 +41,7 @@ _textButtonTheme(BuildContext context) {
         if (states.contains(MaterialState.pressed)) {
           return theme.primary.withOpacity(0.75);
         } else {
-          theme.primary;
+          return theme.primary;
         }
       },
     ),

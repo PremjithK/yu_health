@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:uuid/uuid.dart';
+import 'package:yu_health/data/constants.dart';
 
 class AuthRepository {
-  // final Uuid _uuid = const Uuid();
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -39,7 +37,7 @@ class AuthRepository {
     User? user = userCredential.user;
 
     if (user != null) {
-      await _firestore.collection('users').doc(user.uid).set({
+      await _firestore.collection(CollectionNames.users).doc(user.uid).set({
         'firstName': firstName,
         'lastName': lastName,
         'dateOfBirth': dateOfBirth,
