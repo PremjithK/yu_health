@@ -77,7 +77,7 @@ class YuElevatedButtonAlt extends StatelessWidget {
     if (icon == null) {
       return Container(
         width: width,
-        decoration: _buttonShadow(context),
+        decoration: _buttonShadowAlt(context),
         child: ElevatedButton(
           onPressed: onPressed,
           style: _secondaryButtonStyle(context),
@@ -87,7 +87,7 @@ class YuElevatedButtonAlt extends StatelessWidget {
     } else {
       return Container(
         width: width,
-        decoration: _buttonShadow(context),
+        decoration: _buttonShadowAlt(context),
         child: ElevatedButton(
           onPressed: onPressed,
           style: _secondaryButtonStyle(context),
@@ -113,6 +113,19 @@ _buttonShadow(BuildContext context) {
       BoxShadow(
         color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
         blurRadius: 4,
+        offset: const Offset(-1, 1),
+      ),
+    ],
+  );
+}
+
+_buttonShadowAlt(BuildContext context) {
+  return BoxDecoration(
+    borderRadius: BorderRadius.circular(ButtonLayout.borderRadius),
+    boxShadow: [
+      BoxShadow(
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+        blurRadius: 2,
         offset: const Offset(-1, 1),
       ),
     ],

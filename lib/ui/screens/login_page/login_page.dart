@@ -68,6 +68,12 @@ class _LoginPageState extends State<LoginPage> {
                   } else {
                     return Column(
                       children: [
+                        Text(
+                          'YuCare',
+                          style: Theme.of(context).textTheme.displayMedium,
+                        ),
+
+                        Gap(25.h),
                         YuTextField(
                           controller: _emailController,
                           prefixIcon: const Icon(Icons.email),

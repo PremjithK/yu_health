@@ -35,9 +35,9 @@ class PersonalInfoPart extends StatelessWidget {
         children: [
           Text(
             'Personal Info',
-            style: Theme.of(context).textTheme.titleSmall,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
-          Gap(25.h),
+          Gap(10.h),
           YuTextField(
             hint: 'First Name',
             prefixIcon: const Icon(Icons.person_outline),

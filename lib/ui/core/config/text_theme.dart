@@ -45,7 +45,7 @@ TextTheme textThemeLight = TextTheme(
   displayLarge: TextStyle(
     fontSize: 50.sp,
     fontWeight: FontWeight.w900,
-    letterSpacing: -1,
+    letterSpacing: -0.5,
     height: 1,
   ),
   displayMedium: TextStyle(

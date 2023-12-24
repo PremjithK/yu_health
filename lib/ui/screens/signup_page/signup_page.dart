@@ -80,51 +80,56 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 500.h,
-                      child: PageView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        onPageChanged: (value) {},
-                        controller: _pageController,
-                        children: [
-                          PersonalInfoPart(
-                            formKey: _formKey,
-                            pageController: _pageController,
-                            firstNameController: _firstNameController,
-                            lastNameController: _lastNameController,
-                          ),
-                          CredentialsPart(
-                            formKey: _formKey,
-                            pageController: _pageController,
-                            emailController: _emailController,
-                            passwordController: _passwordController,
-                            confirmPasswordController:
-                                _confirmPasswordController,
-                            phoneNumberController: _phoneController,
-                            onSubmitted: () {
-                              if (_formKey.currentState!.validate()) {
-                                context.read<SignupBloc>().add(
-                                      SignupFormSubmittedEvent(
-                                        firstName:
-                                            _firstNameController.text.trim(),
-                                        lastName:
-                                            _lastNameController.text.trim(),
-                                        email: _emailController.text.trim(),
-                                        password:
-                                            _passwordController.text.trim(),
-                                        gender: context
-                                            .read<GenderPickerProvider>()
-                                            .selectedGender!,
-                                        dateOfBirth: DateTime.now(),
-                                        phoneNumber: double.parse(
-                                          _phoneController.text.trim(),
+                    Text(
+                      'Sign Up',
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                    SingleChildScrollView(
+                      child: SizedBox(
+                        height: 450.h,
+                        child: PageView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          controller: _pageController,
+                          children: [
+                            PersonalInfoPart(
+                              formKey: _formKey,
+                              pageController: _pageController,
+                              firstNameController: _firstNameController,
+                              lastNameController: _lastNameController,
+                            ),
+                            CredentialsPart(
+                              formKey: _formKey,
+                              pageController: _pageController,
+                              emailController: _emailController,
+                              passwordController: _passwordController,
+                              confirmPasswordController:
+                                  _confirmPasswordController,
+                              phoneNumberController: _phoneController,
+                              onSubmitted: () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<SignupBloc>().add(
+                                        SignupFormSubmittedEvent(
+                                          firstName:
+                                              _firstNameController.text.trim(),
+                                          lastName:
+                                              _lastNameController.text.trim(),
+                                          email: _emailController.text.trim(),
+                                          password:
+                                              _passwordController.text.trim(),
+                                          gender: context
+                                              .read<GenderPickerProvider>()
+                                              .selectedGender!,
+                                          dateOfBirth: DateTime.now(),
+                                          phoneNumber: double.parse(
+                                            _phoneController.text.trim(),
+                                          ),
                                         ),
-                                      ),
-                                    );
-                              }
-                            },
-                          ),
-                        ],
+                                      );
+                                }
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

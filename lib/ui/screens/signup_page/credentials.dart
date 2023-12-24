@@ -38,9 +38,9 @@ class CredentialsPart extends StatelessWidget {
           children: [
             Text(
               'Login Credentials',
-              style: Theme.of(context).textTheme.titleSmall,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
-            Gap(20.h),
+            Gap(10.h),
             YuTextField(
               prefixIcon: const Icon(Icons.email),
               hint: 'Email',
@@ -52,7 +52,7 @@ class CredentialsPart extends StatelessWidget {
             YuTextField(
               prefixIcon: const Icon(Icons.phone),
               hint: 'Phone Number',
-              validator: (value) => Validators.validateEmail(value),
+              validator: (value) => Validators.validatePhoneNumber(value),
               keyboardType: TextInputType.phone,
               controller: phoneNumberController,
             ),

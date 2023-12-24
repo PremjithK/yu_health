@@ -11,6 +11,21 @@ class Validators {
     return null;
   }
 
+  static String? validatePhoneNumber(String? value) {
+    if (value == null || value == '') {
+      return 'Phone Number cannot be blank';
+    }
+    if (!RegExp(
+            r'((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}')
+        .hasMatch(value)) {
+      return 'Invalid phone number';
+    }
+    if (value.length != 10) {
+      return 'Invalid phone number';
+    }
+    return null;
+  }
+
   // Validate email with regex
   static String? validateEmail(String? value) {
     if (value == '' || value == null) {
