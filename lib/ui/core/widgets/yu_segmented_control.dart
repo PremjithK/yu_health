@@ -45,9 +45,8 @@ class SegmentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected = Provider.of<GenderPickerSegmentedButtonProvider>(context)
-            .selectedGender ==
-        label;
+    bool isSelected =
+        Provider.of<GenderPickerProvider>(context).selectedGender == label;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       decoration: const BoxDecoration(),

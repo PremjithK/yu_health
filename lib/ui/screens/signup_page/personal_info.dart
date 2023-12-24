@@ -33,10 +33,11 @@ class PersonalInfoPart extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             'Personal Info',
+            style: Theme.of(context).textTheme.titleSmall,
           ),
-          Gap(15.h),
+          Gap(25.h),
           YuTextField(
             hint: 'First Name',
             prefixIcon: const Icon(Icons.person_outline),
@@ -65,7 +66,7 @@ class PersonalInfoPart extends StatelessWidget {
             controller: context.read<DatePickerProvider>().dateTimeController,
           ),
           Gap(10.h),
-          Consumer<GenderPickerSegmentedButtonProvider>(
+          Consumer<GenderPickerProvider>(
             builder: (context, provider, _) => SegmentedControl(
               defaultValue: provider.selectedGender,
               segments: const {
@@ -75,9 +76,7 @@ class PersonalInfoPart extends StatelessWidget {
                     label: 'Other', icon: Icons.question_mark_outlined),
               },
               onValueChanged: (value) {
-                context
-                    .read<GenderPickerSegmentedButtonProvider>()
-                    .setGender(value!);
+                context.read<GenderPickerProvider>().setGender(value!);
               },
             ),
           ),

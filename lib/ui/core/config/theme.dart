@@ -135,7 +135,7 @@ InputDecorationTheme inputDecorationThemeDark = InputDecorationTheme(
         states.contains(MaterialState.focused)) {
       return darkColorScheme.error;
     } else {
-      return darkColorScheme.onBackground.withOpacity(0.25);
+      return darkColorScheme.onBackground.withOpacity(0.5);
     }
   }),
 );

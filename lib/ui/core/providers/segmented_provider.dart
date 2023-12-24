@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GenderPickerSegmentedButtonProvider extends ChangeNotifier {
+class GenderPickerProvider extends ChangeNotifier {
   late String? _selectedGender = 'Male';
 
   void setGender(String value) {

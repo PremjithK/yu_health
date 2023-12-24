@@ -41,8 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            create: (context) => GenderPickerSegmentedButtonProvider()),
+        ChangeNotifierProvider(create: (context) => GenderPickerProvider()),
         ChangeNotifierProvider(create: (context) => ObscurePasswordProvider()),
         ChangeNotifierProvider(create: (context) => DatePickerProvider()),
       ],
@@ -114,8 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         password:
                                             _passwordController.text.trim(),
                                         gender: context
-                                            .read<
-                                                GenderPickerSegmentedButtonProvider>()
+                                            .read<GenderPickerProvider>()
                                             .selectedGender!,
                                         dateOfBirth: DateTime.now(),
                                         phoneNumber: double.parse(

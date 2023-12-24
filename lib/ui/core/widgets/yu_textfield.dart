@@ -73,7 +73,7 @@ class YuTextField extends StatelessWidget {
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(ButtonLayout.borderRadius),
           borderSide: BorderSide(
-            color: theme.outline.withOpacity(0.3),
+            color: theme.outline.withOpacity(0.25),
           ),
         ),
         //& ERROR MESSAGE STYLE
@@ -103,7 +103,10 @@ class YuTextField extends StatelessWidget {
         // LABEL STYLES
         // HINT STYLES
         labelText: hint,
-        floatingLabelStyle: const TextStyle(fontFamily: primaryFont),
+        floatingLabelStyle: TextStyle(
+          fontFamily: primaryFont,
+          fontSize: 14.sp,
+        ),
         labelStyle: TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: 14.sp,

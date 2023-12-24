@@ -36,7 +36,10 @@ class CredentialsPart extends StatelessWidget {
         builder: (context, provider, _) => Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Setup Login Credentials'),
+            Text(
+              'Login Credentials',
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
             Gap(20.h),
             YuTextField(
               prefixIcon: const Icon(Icons.email),

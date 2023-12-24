@@ -7,12 +7,17 @@ TextTheme textThemeLight = TextTheme(
     letterSpacing: 0,
     fontWeight: FontWeight.normal,
   ),
+  labelMedium: TextStyle(
+    fontSize: 14.sp,
+    letterSpacing: 0,
+    fontWeight: FontWeight.normal,
+  ),
   bodySmall: TextStyle(
-    fontSize: 13.sp,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w500,
   ),
   bodyMedium: TextStyle(
-    fontSize: 16.sp,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   ),
   bodyLarge: TextStyle(
