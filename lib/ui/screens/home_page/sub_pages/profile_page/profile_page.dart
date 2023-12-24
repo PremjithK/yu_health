@@ -27,7 +27,9 @@ class _ProfilePageState extends State<ProfilePage> {
         title: const Text('My Profile'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+            },
             icon: const Icon(Icons.logout_outlined),
           ),
           IconButton(

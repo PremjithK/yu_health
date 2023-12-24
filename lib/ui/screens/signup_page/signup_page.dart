@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:yu_health/ui/core/providers/date_picker_provider.dart';
 import 'package:yu_health/ui/core/providers/password_visibility_provider.dart';
 import 'package:yu_health/ui/core/providers/segmented_provider.dart';
 import 'package:yu_health/ui/core/utils/page_transitions.dart';
@@ -30,6 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
   // Image holder
 
   // Page
@@ -39,8 +41,10 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => SegmentedControlProvider()),
+        ChangeNotifierProvider(
+            create: (context) => GenderPickerSegmentedButtonProvider()),
         ChangeNotifierProvider(create: (context) => ObscurePasswordProvider()),
+        ChangeNotifierProvider(create: (context) => DatePickerProvider()),
       ],
       builder: (context, _) => Scaffold(
         body: BlocProvider(
@@ -55,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 );
               }
               if (state is SignupSuccess) {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   PageTransitionWrapper(
                     duration: Durations.long2,
@@ -99,21 +103,27 @@ class _SignUpPageState extends State<SignUpPage> {
                                 _confirmPasswordController,
                             phoneNumberController: _phoneController,
                             onSubmitted: () {
-                              context.read<SignupBloc>().add(
-                                    SignupFormSubmittedEvent(
-                                      firstName:
-                                          _firstNameController.text.trim(),
-                                      lastName: _lastNameController.text.trim(),
-                                      email: _emailController.text.trim(),
-                                      password: _passwordController.text.trim(),
-                                      gender: context
-                                          .read<SegmentedControlProvider>()
-                                          .selectedGender!,
-                                      dateOfBirth: DateTime.now(),
-                                      phoneNumber: double.parse(
-                                          _phoneController.text.trim()),
-                                    ),
-                                  );
+                              if (_formKey.currentState!.validate()) {
+                                context.read<SignupBloc>().add(
+                                      SignupFormSubmittedEvent(
+                                        firstName:
+                                            _firstNameController.text.trim(),
+                                        lastName:
+                                            _lastNameController.text.trim(),
+                                        email: _emailController.text.trim(),
+                                        password:
+                                            _passwordController.text.trim(),
+                                        gender: context
+                                            .read<
+                                                GenderPickerSegmentedButtonProvider>()
+                                            .selectedGender!,
+                                        dateOfBirth: DateTime.now(),
+                                        phoneNumber: double.parse(
+                                          _phoneController.text.trim(),
+                                        ),
+                                      ),
+                                    );
+                              }
                             },
                           ),
                         ],

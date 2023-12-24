@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:yu_health/ui/core/config/layout.dart';
+import 'package:yu_health/ui/core/providers/date_picker_provider.dart';
 import 'package:yu_health/ui/core/providers/segmented_provider.dart';
+import 'package:yu_health/ui/core/utils/validators.dart';
 import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/ui/core/widgets/yu_segmented_control.dart';
 import 'package:yu_health/ui/core/widgets/yu_textfield.dart';
@@ -37,27 +40,32 @@ class PersonalInfoPart extends StatelessWidget {
           YuTextField(
             hint: 'First Name',
             prefixIcon: const Icon(Icons.person_outline),
-            validator: (value) => null,
+            validator: (value) => Validators.validateName(value),
             controller: firstNameController,
           ),
           Gap(10.h),
           YuTextField(
             hint: 'Last Name',
             prefixIcon: const Icon(Icons.person_outline),
-            validator: (value) => null,
+            validator: (value) => Validators.validateName(value),
             controller: lastNameController,
           ),
 
           Gap(10.h),
           YuTextField(
+            onTap: () async {
+              context.read<DatePickerProvider>().setDate(
+                    await _showDatePicker(context) ?? DateTime(2000),
+                  );
+            },
             hint: 'Date Of Birth',
             prefixIcon: const Icon(Icons.date_range),
-            suffixIcon: const Icon(Icons.add),
             validator: (value) => null,
-            controller: TextEditingController(),
+            readOnly: true,
+            controller: context.read<DatePickerProvider>().dateTimeController,
           ),
           Gap(10.h),
-          Consumer<SegmentedControlProvider>(
+          Consumer<GenderPickerSegmentedButtonProvider>(
             builder: (context, provider, _) => SegmentedControl(
               defaultValue: provider.selectedGender,
               segments: const {
@@ -67,7 +75,9 @@ class PersonalInfoPart extends StatelessWidget {
                     label: 'Other', icon: Icons.question_mark_outlined),
               },
               onValueChanged: (value) {
-                context.read<SegmentedControlProvider>().setGender(value!);
+                context
+                    .read<GenderPickerSegmentedButtonProvider>()
+                    .setGender(value!);
               },
             ),
           ),
@@ -93,4 +103,13 @@ class PersonalInfoPart extends StatelessWidget {
       ),
     );
   }
+}
+
+_showDatePicker(BuildContext context) async {
+  return await showDatePicker(
+    context: context,
+    firstDate: DateTime(1900),
+    lastDate: DateTime(2500),
+    initialDate: DateTime(2000),
+  );
 }

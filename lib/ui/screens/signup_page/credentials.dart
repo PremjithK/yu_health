@@ -47,7 +47,7 @@ class CredentialsPart extends StatelessWidget {
             ),
             Gap(10.h),
             YuTextField(
-              prefixIcon: const Icon(Icons.email),
+              prefixIcon: const Icon(Icons.phone),
               hint: 'Phone Number',
               validator: (value) => Validators.validateEmail(value),
               keyboardType: TextInputType.phone,
@@ -76,7 +76,10 @@ class CredentialsPart extends StatelessWidget {
               obscureText: provider.passwordHidden,
               prefixIcon: const Icon(Icons.lock),
               hint: 'Confirm Password',
-              validator: (value) => Validators.validatePassword(value),
+              validator: (value) => Validators.validateConfirmPassword(
+                passwordController.text.trim(),
+                confirmPasswordController.text.trim(),
+              ),
               controller: confirmPasswordController,
             ),
             Gap(10.h),

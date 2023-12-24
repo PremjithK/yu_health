@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               child: BlocConsumer<LoginBloc, LoginState>(
                 listener: (context, state) {
                   if (state is LoginSuccess) {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       PageTransitionWrapper(
                         duration: Durations.long1,

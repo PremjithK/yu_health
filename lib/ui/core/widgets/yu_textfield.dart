@@ -17,6 +17,9 @@ class YuTextField extends StatelessWidget {
     this.maxLines = 1,
     this.onChanged,
     this.suffixIcon,
+    this.readOnly,
+    this.initialValue,
+    this.onTap,
   });
 
   final Widget? suffixIcon;
@@ -30,6 +33,10 @@ class YuTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final int? maxLines;
   final void Function(String)? onChanged;
+  final bool? readOnly;
+  final String? initialValue;
+
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +45,10 @@ class YuTextField extends StatelessWidget {
     return TextFormField(
       // Config
       key: key,
+
+      initialValue: initialValue,
+      readOnly: readOnly ?? false,
+      onTap: onTap,
       controller: controller,
       validator: validator,
       obscureText: obscureText ?? false,

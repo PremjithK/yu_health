@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,51 +26,43 @@ class MyApp extends StatelessWidget {
       designSize: const Size(384, 852),
       ensureScreenSize: true,
       minTextAdapt: true,
-      builder: (context, child) => BlocProvider(
-        create: (context) => AuthBloc(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'YuHealth for patients',
-          theme: lightTheme,
-          darkTheme: darkTheme,
-          themeMode: ThemeMode.system,
-          home: Builder(builder: (context) {
-            context.read<AuthBloc>().add(UserLoading());
-            FirebaseAuth.instance.authStateChanges().listen((User? user) {
-              context.read<AuthBloc>().add(
-                    user != null ? UserLoggedIn() : UserLoggedOut(),
-                  );
-            });
-            return BlocListener<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state is AuthLoggedOut) {
-                  Navigator.pushReplacement(
-                    context,
-                    PageTransitionWrapper(
-                      duration: Durations.long2,
-                      page: const LoginPage(),
-                      transitionType: PageTransitionType.slideLeft,
-                      curve: Curves.ease,
-                    ),
-                  );
-                }
-                if (state is AuthLoggedIn) {
-                  Navigator.pushReplacement(
-                    context,
-                    PageTransitionWrapper(
-                      duration: Durations.long2,
-                      page: const HomePage(),
-                      transitionType: PageTransitionType.slideLeft,
-                      curve: Curves.ease,
-                    ),
-                  );
-                }
-              },
-              child: const Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }),
+      builder: (context, _) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'YuHealth for patients',
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.system,
+        home: BlocProvider(
+          create: (context) => AuthBloc(),
+          child: BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              print(state);
+
+              if (state is AuthLoggedOut) {
+                Navigator.of(context, rootNavigator: true).pushReplacement(
+                  PageTransitionWrapper(
+                    duration: Durations.long2,
+                    page: const LoginPage(),
+                    transitionType: PageTransitionType.slideLeft,
+                    curve: Curves.ease,
+                  ),
+                );
+              }
+              if (state is AuthLoggedIn) {
+                Navigator.of(context, rootNavigator: true).pushReplacement(
+                  PageTransitionWrapper(
+                    duration: Durations.long2,
+                    page: const HomePage(),
+                    transitionType: PageTransitionType.slideLeft,
+                    curve: Curves.ease,
+                  ),
+                );
+              }
+            },
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
         ),
       ),
     );
