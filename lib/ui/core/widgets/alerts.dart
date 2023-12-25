@@ -96,7 +96,7 @@ class YuAlerts {
               label: 'Yes',
               onPressed: onConfirmed,
             ),
-            YuElevatedButton(
+            YuElevatedButtonAlt(
               label: 'No',
               onPressed: onDenied,
             ),

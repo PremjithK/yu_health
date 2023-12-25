@@ -6,9 +6,11 @@ import 'package:gap/gap.dart';
 import 'package:yu_health/domain/repositories/auth_repository.dart';
 import 'package:yu_health/ui/core/config/layout.dart';
 import 'package:yu_health/ui/core/providers/theme_provider.dart';
+import 'package:yu_health/ui/core/utils/page_transitions.dart';
 import 'package:yu_health/ui/core/widgets/alerts.dart';
 import 'package:yu_health/ui/screens/home_page/sub_pages/profile_page/profile_card_cubit/profile_card_cubit.dart';
 import 'package:yu_health/ui/screens/home_page/widgets/profille_card.dart';
+import 'package:yu_health/ui/screens/login_page/login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -35,9 +37,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 context,
                 title: 'Log Out',
                 message: 'Are you sure you want to logout?',
-                onConfirmed: () {
-                  AuthRepository().logout();
-                  Navigator.pop(context);
+                onConfirmed: () async {
+                  await AuthRepository()
+                      .logout()
+                      .then((value) => Navigator.pop(context))
+                      .then(
+                        (value) => Navigator.push(
+                          context,
+                          PageTransitionWrapper(
+                            transitionType: PageTransitionType.slideLeft,
+                            page: const LoginPage(),
+                          ),
+                        ),
+                      );
                 },
                 onDenied: () => Navigator.pop(context),
               );
@@ -58,8 +70,6 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Gap(10.h),
-
             // Profile Preview Card
             BlocProvider(
               lazy: true,

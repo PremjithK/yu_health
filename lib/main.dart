@@ -1,13 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import 'package:yu_health/firebase_options.dart';
 import 'package:yu_health/ui/core/config/theme.dart';
 import 'package:yu_health/ui/core/providers/theme_provider.dart';
-import 'package:yu_health/ui/core/utils/auth_wrapper.dart';
+import 'package:yu_health/ui/core/utils/auth_state_bloc/auth_state_bloc.dart';
+import 'package:yu_health/ui/core/utils/bloc_auth_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +36,8 @@ class _MyAppState extends State<MyApp> {
     context.read<ThemeProvider>().getTheme();
   }
 
+  final AuthStateBloc authStateBloc = AuthStateBloc();
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -51,7 +53,10 @@ class _MyAppState extends State<MyApp> {
           themeMode: provider.themeMode,
           themeAnimationCurve: Curves.ease,
           themeAnimationDuration: Durations.long2,
-          home: const AuthWrapper(),
+          home: BlocProvider.value(
+            value: AuthStateBloc(),
+            child: const BlocAuthWrapper(),
+          ),
         ),
       ),
     );

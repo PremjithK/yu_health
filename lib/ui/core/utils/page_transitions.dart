@@ -19,7 +19,7 @@ class PageTransitionWrapper extends PageRouteBuilder {
     this.curve = Curves.ease,
     required this.page,
   }) : super(
-          transitionDuration: duration ?? Durations.long2,
+          transitionDuration: duration ?? Durations.long3,
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
