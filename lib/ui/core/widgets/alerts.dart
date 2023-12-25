@@ -92,8 +92,14 @@ class YuAlerts {
           title: Text(title),
           content: Text(message),
           actions: [
-            YuElevatedButton(label: 'Yes', onPressed: onConfirmed),
-            YuElevatedButton(label: 'No', onPressed: onDenied),
+            YuElevatedButton(
+              label: 'Yes',
+              onPressed: onConfirmed,
+            ),
+            YuElevatedButton(
+              label: 'No',
+              onPressed: onDenied,
+            ),
           ],
         );
       },

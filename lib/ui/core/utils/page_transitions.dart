@@ -8,18 +8,18 @@ enum PageTransitionType {
 }
 
 class PageTransitionWrapper extends PageRouteBuilder {
-  final PageTransitionType transitionType;
-  final Widget page;
+  final PageTransitionType? transitionType;
+  final Duration? duration;
   final Curve curve;
-  final Duration duration;
+  final Widget page;
 
   PageTransitionWrapper({
-    required this.duration,
+    this.transitionType,
+    this.duration,
+    this.curve = Curves.ease,
     required this.page,
-    required this.transitionType,
-    required this.curve,
   }) : super(
-          transitionDuration: duration,
+          transitionDuration: duration ?? Durations.long2,
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,

@@ -35,7 +35,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 context,
                 title: 'Log Out',
                 message: 'Are you sure you want to logout?',
-                onConfirmed: () => AuthRepository().logout(),
+                onConfirmed: () {
+                  AuthRepository().logout();
+                  Navigator.pop(context);
+                },
                 onDenied: () => Navigator.pop(context),
               );
             },
