@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yu_health/ui/core/widgets/yu_bottom_navbar.dart';
 import 'package:yu_health/ui/screens/home_page/cubit/page_switcher_cubit.dart';
 import 'package:yu_health/ui/screens/home_page/sub_pages/dashboard_page.dart';
-import 'package:yu_health/ui/screens/home_page/sub_pages/find_doctors_page.dart';
+import 'package:yu_health/ui/screens/home_page/sub_pages/doctors_page/doctors_page.dart';
 import 'package:yu_health/ui/screens/home_page/sub_pages/profile_page/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const DashboardPage(key: Key('dashboard')),
-    const FindDoctorsPage(key: Key('find_doctors')),
+    const DoctorsPage(key: Key('find_doctors')),
     const ProfilePage(key: Key('my_profile')),
   ];
 

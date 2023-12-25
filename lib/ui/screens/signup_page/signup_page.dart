@@ -60,9 +60,9 @@ class _SignUpPageState extends State<SignUpPage> {
               if (state is SignupSuccess) {
                 Navigator.pushReplacement(
                   context,
-                  PageTransitionWrapper(
+                  TransitionedRoute(
                     duration: Durations.long2,
-                    page: HomePage(),
+                    page: const HomePage(),
                     transitionType: PageTransitionType.slideLeft,
                     curve: Curves.ease,
                   ),
@@ -71,7 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
             },
             builder: (context, state) {
               if (state is SignupLoading) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }

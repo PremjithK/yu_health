@@ -7,13 +7,13 @@ enum PageTransitionType {
   other,
 }
 
-class PageTransitionWrapper extends PageRouteBuilder {
+class TransitionedRoute extends PageRouteBuilder {
   final PageTransitionType? transitionType;
   final Duration? duration;
   final Curve curve;
   final Widget page;
 
-  PageTransitionWrapper({
+  TransitionedRoute({
     this.transitionType,
     this.duration,
     this.curve = Curves.ease,
@@ -34,46 +34,30 @@ class PageTransitionWrapper extends PageRouteBuilder {
           ) {
             switch (transitionType) {
               case PageTransitionType.slideLeft:
-                return FadeTransition(
-                  opacity: Tween<double>(begin: 0.25, end: 1.0).animate(
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1.0, 0),
+                    end: Offset.zero,
+                  ).animate(
                     CurvedAnimation(
                       parent: animation,
                       curve: curve,
                     ),
                   ),
-                  child: SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(1.0, 0),
-                      end: Offset.zero,
-                    ).animate(
-                      CurvedAnimation(
-                        parent: animation,
-                        curve: curve,
-                      ),
-                    ),
-                    child: child,
-                  ),
+                  child: child,
                 );
               case PageTransitionType.slideRight:
-                return FadeTransition(
-                  opacity: Tween<double>(begin: 0.25, end: 1.0).animate(
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(-1.0, 0),
+                    end: Offset.zero,
+                  ).animate(
                     CurvedAnimation(
                       parent: animation,
                       curve: curve,
                     ),
                   ),
-                  child: SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(-1.0, 0),
-                      end: Offset.zero,
-                    ).animate(
-                      CurvedAnimation(
-                        parent: animation,
-                        curve: curve,
-                      ),
-                    ),
-                    child: child,
-                  ),
+                  child: child,
                 );
 
               default:

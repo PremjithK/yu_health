@@ -11,6 +11,7 @@ import 'package:yu_health/ui/core/widgets/alerts.dart';
 import 'package:yu_health/ui/screens/home_page/sub_pages/profile_page/profile_card_cubit/profile_card_cubit.dart';
 import 'package:yu_health/ui/screens/home_page/widgets/profille_card.dart';
 import 'package:yu_health/ui/screens/login_page/login_page.dart';
+import 'package:yu_health/ui/screens/settings/settings_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -40,16 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onConfirmed: () async {
                   await AuthRepository()
                       .logout()
-                      .then((value) => Navigator.pop(context))
-                      .then(
-                        (value) => Navigator.push(
-                          context,
-                          PageTransitionWrapper(
-                            transitionType: PageTransitionType.slideLeft,
-                            page: const LoginPage(),
-                          ),
-                        ),
-                      );
+                      .then((value) => Navigator.pop(context));
                 },
                 onDenied: () => Navigator.pop(context),
               );
@@ -58,7 +50,12 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           IconButton(
             onPressed: () {
-              context.read<ThemeProvider>().setTheme(ThemeMode.system);
+              Navigator.push(
+                  context,
+                  TransitionedRoute(
+                    page: SettingsPage(),
+                    transitionType: PageTransitionType.slideLeft,
+                  ));
             },
             icon: const Icon(Icons.settings_outlined),
           ),

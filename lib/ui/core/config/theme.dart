@@ -145,7 +145,7 @@ ThemeData darkTheme = ThemeData(
   fontFamily: primaryFont,
   useMaterial3: true,
   colorScheme: darkColorScheme,
-  textTheme: textThemeLight,
+  textTheme: textTheme,
   tooltipTheme: tooltipTheme,
   inputDecorationTheme: inputDecorationThemeDark,
 );
@@ -154,7 +154,7 @@ ThemeData lightTheme = ThemeData(
   fontFamily: primaryFont,
   useMaterial3: true,
   colorScheme: lightColorScheme,
-  textTheme: textThemeLight,
+  textTheme: textTheme,
   tooltipTheme: tooltipTheme,
   inputDecorationTheme: inputDecorationThemeLight,
 );

@@ -12,11 +12,13 @@ class SegmentedControl extends StatelessWidget {
     required this.onValueChanged,
     required this.segments,
     this.width,
+    this.backgroundColor,
   });
   final double? width;
   final String? defaultValue;
-  final void Function(String?) onValueChanged;
+  final void Function(String? value) onValueChanged;
   final Map<String, Widget> segments;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class SegmentedControl extends StatelessWidget {
         children: segments,
         groupValue: defaultValue,
         onValueChanged: onValueChanged,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: backgroundColor ?? Colors.transparent,
         thumbColor: Theme.of(context).colorScheme.primary,
       ),
     );

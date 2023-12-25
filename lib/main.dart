@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     context.read<ThemeProvider>().getTheme();
   }
 
-  final AuthStateBloc authStateBloc = AuthStateBloc();
+  final AuthBloc authStateBloc = AuthBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +45,17 @@ class _MyAppState extends State<MyApp> {
       ensureScreenSize: true,
       minTextAdapt: true,
       builder: (context, _) => Consumer<ThemeProvider>(
-        builder: (context, provider, _) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'YuHealth for patients',
-          theme: lightTheme,
-          darkTheme: darkTheme,
-          themeMode: provider.themeMode,
-          themeAnimationCurve: Curves.ease,
-          themeAnimationDuration: Durations.long2,
-          home: BlocProvider.value(
-            value: AuthStateBloc(),
-            child: const BlocAuthWrapper(),
+        builder: (context, provider, _) => BlocProvider(
+          create: (context) => AuthBloc(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'YuHealth for patients',
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: provider.themeMode,
+            themeAnimationCurve: Curves.ease,
+            themeAnimationDuration: Durations.long2,
+            home: const BlocAuthWrapper(),
           ),
         ),
       ),

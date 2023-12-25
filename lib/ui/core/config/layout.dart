@@ -7,5 +7,5 @@ class ButtonLayout {
 
 class PageLayout {
   static EdgeInsetsGeometry get pagePadding =>
-      EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h);
+      EdgeInsets.symmetric(horizontal: 20.w);
 }

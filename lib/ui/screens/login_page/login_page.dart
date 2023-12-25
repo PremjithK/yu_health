@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                   if (state is LoginSuccess) {
                     Navigator.pushReplacement(
                       context,
-                      PageTransitionWrapper(
+                      TransitionedRoute(
                         duration: Durations.long1,
                         page: const HomePage(),
                         transitionType: PageTransitionType.slideLeft,
@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              PageTransitionWrapper(
+                              TransitionedRoute(
                                 duration: Durations.long1,
                                 page: const SignUpPage(),
                                 transitionType: PageTransitionType.slideLeft,

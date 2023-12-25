@@ -10,13 +10,13 @@ class BlocAuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthStateBloc, AuthStateState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         print(state);
         if (state is UserLoggedOut) {
           Navigator.pushReplacement(
             context,
-            PageTransitionWrapper(
+            TransitionedRoute(
               page: const LoginPage(),
               transitionType: PageTransitionType.slideLeft,
             ),
@@ -24,7 +24,7 @@ class BlocAuthWrapper extends StatelessWidget {
         } else if (state is UserLoggedIn) {
           Navigator.pushReplacement(
             context,
-            PageTransitionWrapper(
+            TransitionedRoute(
               page: const HomePage(),
               transitionType: PageTransitionType.slideLeft,
             ),

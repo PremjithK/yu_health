@@ -27,8 +27,10 @@ class ThemeProvider extends ChangeNotifier {
   ThemeMode getThemeFromString(String themeStr) {
     if (themeStr == 'light') {
       return ThemeMode.light;
-    } else {
+    } else if (themeStr == 'dark') {
       return ThemeMode.dark;
+    } else {
+      return ThemeMode.system;
     }
   }
 

@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 part 'auth_state_event.dart';
 part 'auth_state_state.dart';
 
-class AuthStateBloc extends Bloc<AuthStateEvent, AuthStateState> {
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final _auth = FirebaseAuth.instance;
-  AuthStateBloc() : super(AppLoading()) {
+  AuthBloc() : super(AppLoading()) {
     _auth.authStateChanges().listen((user) {
       print('Auth state changed');
       add(user != null ? AutoLoginEvent() : LogoutEvent());
