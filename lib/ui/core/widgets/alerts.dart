@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:yu_health/ui/core/config/layout.dart';
 import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 
 class YuBottomSheets {
@@ -88,15 +89,32 @@ class YuAlerts {
       context: context,
       builder: (context) {
         return AlertDialog(
-          actionsAlignment: MainAxisAlignment.end,
-          title: Text(title),
-          content: Text(message),
+          elevation: 0,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(ButtonLayout.borderRadius),
+          ),
+          actionsAlignment: MainAxisAlignment.center,
+          actionsOverflowAlignment: OverflowBarAlignment.center,
+          title: Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.w900,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+          content: Text(
+            message,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
           actions: [
             YuElevatedButtonAlt(
+              width: 100,
               label: 'Yes',
               onPressed: onConfirmed,
             ),
             YuElevatedButtonAlt(
+              width: 100,
               label: 'No',
               onPressed: onDenied,
             ),
