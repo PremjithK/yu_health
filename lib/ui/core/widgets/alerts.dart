@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 
 class YuBottomSheets {
   static showErrorBottomSheet(
@@ -71,4 +72,31 @@ ShapeBorder _alertBottomSheetShape() {
   return RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(20.r),
   );
+}
+
+class YuAlerts {
+  static showConfirmationAlert(
+    BuildContext context, {
+    required String title,
+    required String message,
+    required void Function() onConfirmed,
+    required void Function() onDenied,
+    bool? barrierDismissible,
+  }) {
+    return showDialog(
+      barrierDismissible: barrierDismissible ?? true,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          actionsAlignment: MainAxisAlignment.end,
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            YuElevatedButton(label: 'Yes', onPressed: onConfirmed),
+            YuElevatedButton(label: 'No', onPressed: onDenied),
+          ],
+        );
+      },
+    );
+  }
 }

@@ -10,6 +10,10 @@ AppBarTheme appBarThemeLight = AppBarTheme(
   toolbarHeight: _appbarHeight,
   elevation: 0,
   scrolledUnderElevation: 0,
+  actionsIconTheme: IconThemeData(
+    color: lightColorScheme.onBackground,
+    size: _iconSize,
+  ),
   iconTheme: IconThemeData(
     color: lightColorScheme.onBackground,
     size: _iconSize,
@@ -29,6 +33,10 @@ AppBarTheme appBarThemeDark = AppBarTheme(
   elevation: 0,
   scrolledUnderElevation: 0,
   iconTheme: IconThemeData(
+    color: darkColorScheme.onBackground,
+    size: _iconSize,
+  ),
+  actionsIconTheme: IconThemeData(
     color: darkColorScheme.onBackground,
     size: _iconSize,
   ),
