@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:yu_health/ui/core/config/layout.dart';
-import 'package:yu_health/ui/core/config/theme.dart';
+import 'package:yu_health/core/config/layout.dart';
+import 'package:yu_health/core/config/theme.dart';
 
 class YuElevatedButton extends StatelessWidget {
   const YuElevatedButton({

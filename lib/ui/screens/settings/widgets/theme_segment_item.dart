@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:yu_health/ui/core/config/theme.dart';
+import 'package:yu_health/core/config/theme.dart';
 
 class IconSegment extends StatelessWidget {
   const IconSegment({

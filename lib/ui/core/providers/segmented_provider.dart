@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GenderPickerProvider extends ChangeNotifier {
-  late String? _selectedGender = 'Male';
+  late String _selectedGender = 'Male';
 
   void setGender(String value) {
     _selectedGender = value;
@@ -14,5 +14,5 @@ class GenderPickerProvider extends ChangeNotifier {
     super.dispose();
   }
 
-  String? get selectedGender => _selectedGender;
+  String get selectedGender => _selectedGender;
 }

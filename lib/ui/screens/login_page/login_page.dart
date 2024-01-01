@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:yu_health/ui/core/config/layout.dart';
+import 'package:yu_health/core/config/layout.dart';
 import 'package:yu_health/ui/core/providers/password_visibility_provider.dart';
-import 'package:yu_health/ui/core/utils/page_transitions.dart';
-import 'package:yu_health/ui/core/utils/validators.dart';
+import 'package:yu_health/core/utils/page_transitions.dart';
+import 'package:yu_health/core/utils/validators.dart';
 import 'package:yu_health/ui/core/widgets/alerts.dart';
 import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/ui/core/widgets/yu_text_button.dart';
@@ -31,8 +32,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginBloc(),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) => SystemNavigator.pop(),
       child: Form(
         key: _formKey,
         child: Scaffold(

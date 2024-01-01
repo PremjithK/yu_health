@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yu_health/ui/core/config/appbar_theme.dart';
-import 'package:yu_health/ui/core/config/text_theme.dart';
+import 'package:yu_health/core/config/appbar_theme.dart';
+import 'package:yu_health/core/config/text_theme.dart';
 
 //! Custom Font
 const String primaryFont = 'Instrument';

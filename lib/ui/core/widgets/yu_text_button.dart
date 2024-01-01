@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yu_health/ui/core/config/theme.dart';
+import 'package:yu_health/core/config/theme.dart';
 
 class YuTextButton extends StatelessWidget {
   const YuTextButton({

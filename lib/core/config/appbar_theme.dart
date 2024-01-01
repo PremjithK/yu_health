@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yu_health/ui/core/config/theme.dart';
+import 'package:yu_health/core/config/theme.dart';
 
 final double _iconSize = 25.sp;
 final double _titleFontSize = 21.sp;

@@ -3,33 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:yu_health/ui/core/config/layout.dart';
+import 'package:yu_health/core/config/layout.dart';
+import 'package:yu_health/ui/core/providers/date_picker_provider.dart';
 import 'package:yu_health/ui/core/providers/password_visibility_provider.dart';
-import 'package:yu_health/ui/core/utils/validators.dart';
+import 'package:yu_health/ui/core/providers/segmented_provider.dart';
+import 'package:yu_health/core/utils/validators.dart';
 import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/ui/core/widgets/yu_textfield.dart';
+import 'package:yu_health/ui/screens/signup_page/bloc/signup_bloc.dart';
+import 'package:yu_health/ui/screens/signup_page/provider/signup_form_provider.dart';
 
 class CredentialsPart extends StatelessWidget {
-  const CredentialsPart({
-    super.key,
-    required this.emailController,
-    required this.passwordController,
-    required this.confirmPasswordController,
-    required this.pageController,
-    required this.formKey,
-    required this.phoneNumberController,
-    required this.onSubmitted,
-  });
-  final TextEditingController emailController;
-  final TextEditingController phoneNumberController;
-  final TextEditingController passwordController;
-  final TextEditingController confirmPasswordController;
-  final PageController pageController;
-  final GlobalKey<FormState> formKey;
-  final void Function() onSubmitted;
+  const CredentialsPart({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final signupProvider = context.read<SignupFormProvider>();
     return Padding(
       padding: PageLayout.pagePadding,
       child: Consumer<ObscurePasswordProvider>(
@@ -46,7 +35,7 @@ class CredentialsPart extends StatelessWidget {
               hint: 'Email',
               validator: (value) => Validators.validateEmail(value),
               keyboardType: TextInputType.emailAddress,
-              controller: emailController,
+              controller: signupProvider.emailController,
             ),
             Gap(10.h),
             YuTextField(
@@ -54,7 +43,7 @@ class CredentialsPart extends StatelessWidget {
               hint: 'Phone Number',
               validator: (value) => Validators.validatePhoneNumber(value),
               keyboardType: TextInputType.phone,
-              controller: phoneNumberController,
+              controller: signupProvider.phoneNumberController,
             ),
             Gap(10.h),
             YuTextField(
@@ -72,7 +61,7 @@ class CredentialsPart extends StatelessWidget {
               prefixIcon: const Icon(Icons.lock),
               hint: 'Password',
               validator: (value) => Validators.validatePassword(value),
-              controller: passwordController,
+              controller: signupProvider.passwordController,
             ),
             Gap(10.h),
             YuTextField(
@@ -80,10 +69,10 @@ class CredentialsPart extends StatelessWidget {
               prefixIcon: const Icon(Icons.lock),
               hint: 'Confirm Password',
               validator: (value) => Validators.validateConfirmPassword(
-                passwordController.text.trim(),
-                confirmPasswordController.text.trim(),
+                signupProvider.passwordController.text.trim(),
+                signupProvider.confirmPasswordController.text.trim(),
               ),
-              controller: confirmPasswordController,
+              controller: signupProvider.confirmPasswordController,
             ),
             Gap(10.h),
             Row(
@@ -95,7 +84,7 @@ class CredentialsPart extends StatelessWidget {
                     label: 'Go Back',
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
-                      pageController.previousPage(
+                      signupProvider.pageController.previousPage(
                         duration: Durations.long2,
                         curve: Curves.ease,
                       );
@@ -109,7 +98,33 @@ class CredentialsPart extends StatelessWidget {
                     label: 'Sign Up',
                     direction: TextDirection.rtl,
                     icon: const Icon(Icons.arrow_forward),
-                    onPressed: onSubmitted,
+                    onPressed: () {
+                      if (signupProvider.signupFormKey.currentState!
+                          .validate()) {
+                        context.read<SignupBloc>().add(
+                              SignupFormSubmittedEvent(
+                                firstName: signupProvider
+                                    .firstNameController.text
+                                    .trim(),
+                                lastName: signupProvider.lastNameController.text
+                                    .trim(),
+                                email:
+                                    signupProvider.emailController.text.trim(),
+                                password: signupProvider.passwordController.text
+                                    .trim(),
+                                gender: context
+                                    .read<GenderPickerProvider>()
+                                    .selectedGender,
+                                dateOfBirth:
+                                    context.read<DatePickerProvider>().date,
+                                phoneNumber: double.parse(
+                                  signupProvider.phoneNumberController.text
+                                      .trim(),
+                                ),
+                              ),
+                            );
+                      }
+                    },
                   ),
                 ),
               ],

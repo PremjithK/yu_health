@@ -3,31 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:yu_health/ui/core/config/layout.dart';
+import 'package:yu_health/core/config/layout.dart';
 import 'package:yu_health/ui/core/providers/date_picker_provider.dart';
 import 'package:yu_health/ui/core/providers/segmented_provider.dart';
-import 'package:yu_health/ui/core/utils/validators.dart';
+import 'package:yu_health/core/utils/validators.dart';
 import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/ui/core/widgets/yu_segmented_control.dart';
 import 'package:yu_health/ui/core/widgets/yu_textfield.dart';
+import 'package:yu_health/ui/screens/signup_page/provider/signup_form_provider.dart';
 
 class PersonalInfoPart extends StatelessWidget {
-  const PersonalInfoPart({
-    super.key,
-    required this.firstNameController,
-    required this.lastNameController,
-    required this.pageController,
-    required this.formKey,
-  });
-
-  final TextEditingController firstNameController;
-  final TextEditingController lastNameController;
-  final PageController pageController;
-  final GlobalKey<FormState> formKey;
-  // dob
+  const PersonalInfoPart({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final signupProvider = context.read<SignupFormProvider>();
     return Padding(
       padding: PageLayout.pagePadding,
       child: Column(
@@ -42,14 +32,14 @@ class PersonalInfoPart extends StatelessWidget {
             hint: 'First Name',
             prefixIcon: const Icon(Icons.person_outline),
             validator: (value) => Validators.validateName(value),
-            controller: firstNameController,
+            controller: signupProvider.firstNameController,
           ),
           Gap(10.h),
           YuTextField(
             hint: 'Last Name',
             prefixIcon: const Icon(Icons.person_outline),
             validator: (value) => Validators.validateName(value),
-            controller: lastNameController,
+            controller: signupProvider.lastNameController,
           ),
 
           Gap(10.h),
@@ -89,9 +79,9 @@ class PersonalInfoPart extends StatelessWidget {
             direction: TextDirection.rtl,
             icon: const Icon(Icons.arrow_forward),
             onPressed: () {
-              if (formKey.currentState!.validate()) {
+              if (signupProvider.signupFormKey.currentState!.validate()) {
                 print('part 1 valid');
-                pageController.nextPage(
+                signupProvider.pageController.nextPage(
                   duration: Durations.long2,
                   curve: Curves.ease,
                 );

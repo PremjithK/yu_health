@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yu_health/ui/core/config/layout.dart';
-import 'package:yu_health/ui/core/utils/page_transitions.dart';
+import 'package:yu_health/core/config/layout.dart';
+import 'package:yu_health/core/utils/page_transitions.dart';
 import 'package:yu_health/ui/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/ui/screens/search_doctors/search_doctors_page.dart';
 

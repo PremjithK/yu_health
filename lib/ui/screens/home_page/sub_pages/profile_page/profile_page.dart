@@ -4,9 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:yu_health/domain/repositories/auth_repository.dart';
-import 'package:yu_health/ui/core/config/layout.dart';
-import 'package:yu_health/ui/core/providers/theme_provider.dart';
-import 'package:yu_health/ui/core/utils/page_transitions.dart';
+import 'package:yu_health/core/config/layout.dart';
+import 'package:yu_health/core/utils/page_transitions.dart';
 import 'package:yu_health/ui/core/widgets/alerts.dart';
 import 'package:yu_health/ui/screens/home_page/sub_pages/profile_page/profile_card_cubit/profile_card_cubit.dart';
 import 'package:yu_health/ui/screens/home_page/widgets/profille_card.dart';
@@ -39,9 +38,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 title: 'Log Out',
                 message: 'Are you sure you want to logout?',
                 onConfirmed: () async {
-                  await AuthRepository()
-                      .logout()
-                      .then((value) => Navigator.pop(context));
+                  await AuthRepository().logout().then(
+                    (_) {
+                      Navigator.pushReplacement(
+                        context,
+                        TransitionedRoute(
+                          page: const LoginPage(),
+                          curve: Curves.ease,
+                          transitionType: PageTransitionType.slideLeft,
+                        ),
+                      );
+                    },
+                  );
                 },
                 onDenied: () => Navigator.pop(context),
               );
@@ -53,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Navigator.push(
                   context,
                   TransitionedRoute(
-                    page: SettingsPage(),
+                    page: const SettingsPage(),
                     transitionType: PageTransitionType.slideLeft,
                   ));
             },
