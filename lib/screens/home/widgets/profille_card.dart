@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:yu_health/core/config/layout.dart';
 import 'package:yu_health/core/config/theme.dart';
@@ -13,16 +14,18 @@ class ProfileCard extends StatelessWidget {
     required this.email,
     required this.age,
     this.onTap,
+    this.imageURL,
   });
 
   final String name;
   final String email;
   final String age;
+  final String? imageURL;
   final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context).colorScheme;
     // UI
     return InkWell(
       borderRadius: BorderRadius.circular(ButtonLayout.borderRadius),
@@ -41,9 +44,18 @@ class ProfileCard extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: darkColorScheme.primaryContainer,
-                  radius: 30.r,
-                ),
+                    backgroundColor: darkColorScheme.primaryContainer,
+                    radius: 30.r,
+                    child: Image.network(
+                      imageURL ?? '',
+                      errorBuilder: (context, error, _) {
+                        return Icon(
+                          Icons.person,
+                          color: lightColorScheme.background,
+                          size: 30.sp,
+                        );
+                      },
+                    )),
                 Gap(15.w),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -85,8 +97,8 @@ class ProfileCard extends StatelessWidget {
               ],
             ),
             Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.white.withOpacity(0.75),
+              FontAwesomeIcons.penToSquare,
+              color: theme.background,
             ),
           ],
         ),

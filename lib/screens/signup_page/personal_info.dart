@@ -79,7 +79,7 @@ class PersonalInfoPart extends StatelessWidget {
             icon: const Icon(Icons.arrow_forward),
             onPressed: () {
               if (signupProvider.signupFormKey.currentState!.validate()) {
-                print('part 1 valid');
+                debugPrint('part 1 valid');
                 signupProvider.pageController.nextPage(
                   duration: Durations.long2,
                   curve: Curves.ease,

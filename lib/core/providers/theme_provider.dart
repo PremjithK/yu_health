@@ -5,7 +5,6 @@ class ThemeProvider extends ChangeNotifier {
   late ThemeMode _themeMode = ThemeMode.system;
 
   void setTheme(ThemeMode mode) async {
-    print('setTheme called');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('theme', mode.name);
     _themeMode = mode;

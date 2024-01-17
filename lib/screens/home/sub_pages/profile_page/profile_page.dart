@@ -7,8 +7,9 @@ import 'package:yu_health/domain/repositories/auth_repository.dart';
 import 'package:yu_health/core/config/layout.dart';
 import 'package:yu_health/core/utils/page_transitions.dart';
 import 'package:yu_health/core/widgets/alerts.dart';
-import 'package:yu_health/screens/home_page/sub_pages/profile_page/profile_card_cubit/profile_card_cubit.dart';
-import 'package:yu_health/screens/home_page/widgets/profille_card.dart';
+import 'package:yu_health/screens/edit_profile/edit_profile_page.dart';
+import 'package:yu_health/screens/home/sub_pages/profile_page/profile_card_cubit/profile_card_cubit.dart';
+import 'package:yu_health/screens/home/widgets/profille_card.dart';
 import 'package:yu_health/screens/settings/settings_page.dart';
 import 'package:yu_health/screens/login_page/login_page.dart';
 
@@ -77,7 +78,6 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             // Profile Preview Card
             BlocProvider(
-              lazy: true,
               create: (context) => ProfileCardCubit()..getProfile(user),
               child: BlocBuilder<ProfileCardCubit, ProfileCardState>(
                 builder: (context, state) {
@@ -86,7 +86,16 @@ class _ProfilePageState extends State<ProfilePage> {
                   }
                   if (state is ProfileCardLoaded) {
                     return ProfileCard(
-                      onTap: () => print('Clicked Profile'),
+                      onTap: () {
+                        debugPrint('Clicked Profile');
+                        Navigator.push(
+                          context,
+                          TransitionedRoute(
+                            page: const EditProfilePage(),
+                            transitionType: PageTransitionType.slideLeft,
+                          ),
+                        );
+                      },
                       name: '${state.firstName} ${state.lastName}',
                       email: state.email,
                       age: state.dateOfBirth,

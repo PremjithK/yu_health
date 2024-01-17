@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:yu_health/core/config/layout.dart';
-import 'package:yu_health/screens/home_page/widgets/consult_button.dart';
+import 'package:yu_health/screens/home/widgets/consult_button.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});

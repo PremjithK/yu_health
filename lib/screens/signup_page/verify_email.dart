@@ -7,7 +7,7 @@ import 'package:yu_health/core/config/layout.dart';
 import 'package:yu_health/core/config/text_theme.dart';
 import 'package:yu_health/core/utils/page_transitions.dart';
 import 'package:yu_health/core/widgets/yu_elevated_button.dart';
-import 'package:yu_health/screens/home_page/home_page.dart';
+import 'package:yu_health/screens/home/home_page.dart';
 import 'package:yu_health/screens/signup_page/signup_bloc/signup_bloc.dart';
 
 class EmailVerificationPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
   @override
   void initState() {
     super.initState();
-    print(FirebaseAuth.instance.currentUser!.displayName);
+    debugPrint(FirebaseAuth.instance.currentUser!.displayName);
     context.read<SignupBloc>().add(EmailVerificationRequested());
   }
 
@@ -77,7 +77,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                     );
                   }
                   if (snapshot.hasData) {
-                    print(snapshot.data?.emailVerified);
+                    debugPrint(snapshot.data?.emailVerified.toString());
                     if (snapshot.data!.emailVerified) {
                       return YuElevatedButton(
                         width: 150.w,

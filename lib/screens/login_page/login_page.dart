@@ -13,10 +13,10 @@ import 'package:yu_health/core/widgets/alerts.dart';
 import 'package:yu_health/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/core/widgets/yu_text_button.dart';
 import 'package:yu_health/core/widgets/yu_textfield.dart';
-import 'package:yu_health/screens/home_page/home_page.dart';
+import 'package:yu_health/screens/home/home_page.dart';
 import 'package:yu_health/screens/login_page/bloc/login_bloc.dart';
-import 'package:yu_health/ui/screens/signup_page/signup_page.dart';
-import 'package:yu_health/ui/screens/signup_page/verify_email.dart';
+import 'package:yu_health/screens/signup_page/signup_page.dart';
+import 'package:yu_health/screens/signup_page/verify_email.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

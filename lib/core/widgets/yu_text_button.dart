@@ -48,12 +48,12 @@ _textButtonTheme(BuildContext context) {
     textStyle: MaterialStateProperty.resolveWith(
       (states) {
         if (states.contains(MaterialState.pressed)) {
-          return TextStyle(
+          return const TextStyle(
             fontFamily: primaryFont,
             decoration: TextDecoration.underline,
           );
         } else {
-          return TextStyle(
+          return const TextStyle(
             fontFamily: primaryFont,
           );
         }

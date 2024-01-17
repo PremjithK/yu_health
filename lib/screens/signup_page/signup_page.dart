@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +8,7 @@ import 'package:yu_health/screens/signup_page/credentials.dart';
 import 'package:yu_health/screens/signup_page/personal_info.dart';
 import 'package:yu_health/screens/signup_page/provider/signup_form_provider.dart';
 import 'package:yu_health/screens/signup_page/signup_bloc/signup_bloc.dart';
-import 'package:yu_health/ui/screens/signup_page/verify_email.dart';
+import 'package:yu_health/screens/signup_page/verify_email.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

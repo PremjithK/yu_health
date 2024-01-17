@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:yu_health/domain/repositories/auth_repository.dart';
 
 part 'login_event.dart';
@@ -24,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final email = event.email;
     final password = event.password;
     final result = await AuthRepository().login(email, password);
-    print(result);
+    debugPrint(result);
     // Error handling
     if (result == 'user-not-found') {
       emit(
