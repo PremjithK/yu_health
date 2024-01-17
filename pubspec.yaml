@@ -28,6 +28,8 @@ dependencies:
   uuid: ^4.2.2
   intl: ^0.19.0
   get_it: ^7.6.4
+  font_awesome_flutter: ^10.6.0
+  pinput: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -57,4 +59,21 @@ flutter:
         - asset: assets/fonts/InstrumentSans-Bold.ttf
           weight: 800
         - asset: assets/fonts/InstrumentSans-Bold.ttf
+          weight: 900
+
+    - family: PlusJakarta
+      fonts:
+        - asset:  assets/fonts/PlusJakartaSans-Light.ttf
+          weight: 300
+        - asset:  assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 400
+        - asset:  assets/fonts/PlusJakartaSans-Medium.ttf
+          weight: 500
+        - asset:  assets/fonts/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset:  assets/fonts/PlusJakartaSans-Bold.ttf
+          weight: 700
+        - asset:  assets/fonts/PlusJakartaSans-ExtraBold.ttf
+          weight: 800
+        - asset:  assets/fonts/PlusJakartaSans-ExtraBold.ttf
           weight: 900

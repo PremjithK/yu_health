@@ -6,7 +6,7 @@ class AuthRepository {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  final Stream<User?> authState = _auth.authStateChanges();
+  static final Stream<User?> authState = _auth.authStateChanges();
 
   Future<void> logout() async {
     _auth.signOut();
@@ -54,5 +54,9 @@ class AuthRepository {
     }
 
     return user;
+  }
+
+  Future<void> sendVerificationEmail() async {
+    await _auth.currentUser!.sendEmailVerification();
   }
 }

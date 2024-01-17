@@ -4,7 +4,7 @@ import 'package:yu_health/core/config/appbar_theme.dart';
 import 'package:yu_health/core/config/text_theme.dart';
 
 //! Custom Font
-const String primaryFont = 'Instrument';
+const String primaryFont = 'PlusJakarta';
 
 //& Color Scheme
 const lightColorScheme = ColorScheme(

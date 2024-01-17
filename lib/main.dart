@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:yu_health/domain/repositories/auth_repository.dart';
 import 'package:yu_health/firebase_options.dart';
 import 'package:yu_health/core/config/theme.dart';
-import 'package:yu_health/ui/core/providers/date_picker_provider.dart';
-import 'package:yu_health/ui/core/providers/password_visibility_provider.dart';
-import 'package:yu_health/ui/core/providers/segmented_provider.dart';
-import 'package:yu_health/ui/core/providers/theme_provider.dart';
-import 'package:yu_health/ui/screens/home_page/home_page.dart';
+import 'package:yu_health/core/providers/date_picker_provider.dart';
+import 'package:yu_health/core/providers/password_visibility_provider.dart';
+import 'package:yu_health/core/providers/segmented_provider.dart';
+import 'package:yu_health/core/providers/theme_provider.dart';
+import 'package:yu_health/screens/home_page/home_page.dart';
+import 'package:yu_health/screens/signup_page/provider/signup_form_provider.dart';
+import 'package:yu_health/screens/signup_page/signup_bloc/signup_bloc.dart';
 import 'package:yu_health/ui/screens/login_page/bloc/login_bloc.dart';
 import 'package:yu_health/ui/screens/login_page/login_page.dart';
-import 'package:yu_health/ui/screens/signup_page/bloc/signup_bloc.dart';
-import 'package:yu_health/ui/screens/signup_page/provider/signup_form_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,8 +57,8 @@ class MyApp extends StatelessWidget {
           themeMode: provider.themeMode,
           themeAnimationCurve: Curves.ease,
           themeAnimationDuration: Durations.long2,
-          home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
+          home: StreamBuilder<User?>(
+            stream: AuthRepository.authState,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return const HomePage();
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
               if (!snapshot.hasData) {
                 return const LoginPage();
               }
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             },
           ),
         ),
