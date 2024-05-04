@@ -6,11 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:yu_health/core/config/theme.dart';
 import 'package:yu_health/core/providers/date_picker_provider.dart';
+import 'package:yu_health/core/providers/doctor_search_filter_provider.dart';
 import 'package:yu_health/core/providers/password_visibility_provider.dart';
 import 'package:yu_health/core/providers/segmented_provider.dart';
 import 'package:yu_health/core/providers/theme_provider.dart';
 import 'package:yu_health/core/utils/connectivity_wrapper.dart';
 import 'package:yu_health/firebase_options.dart';
+import 'package:yu_health/screens/enter_emal_for_reset/bloc/reset_pass_email_bloc.dart';
 import 'package:yu_health/screens/home/home_page.dart';
 import 'package:yu_health/screens/login_page/bloc/login_bloc.dart';
 import 'package:yu_health/screens/login_page/login_page.dart';
@@ -27,12 +29,14 @@ void main() async {
       providers: [
         BlocProvider(create: (context) => LoginBloc()),
         BlocProvider(create: (context) => SignupBloc()),
+        BlocProvider(create: (context) => ResetPassEmailBloc()),
         ChangeNotifierProvider(
             create: (context) => ThemeProvider()..getTheme()),
         ChangeNotifierProvider(create: (context) => GenderPickerProvider()),
         ChangeNotifierProvider(create: (context) => ObscurePasswordProvider()),
         ChangeNotifierProvider(create: (context) => DatePickerProvider()),
         ChangeNotifierProvider(create: (context) => SignupFormProvider()),
+        ChangeNotifierProvider(create: (context) => DoctorFilterProvider()),
       ],
       child: const MyApp(),
     ),

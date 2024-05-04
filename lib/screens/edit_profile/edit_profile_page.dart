@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:yu_health/core/config/layout.dart';
-import 'package:yu_health/screens/home/widgets/consult_button.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
@@ -18,7 +15,7 @@ class EditProfilePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: PageLayout.pagePadding,
-        child: Form(
+        child: const Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [],

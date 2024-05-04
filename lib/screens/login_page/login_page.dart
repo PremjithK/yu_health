@@ -7,12 +7,14 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:yu_health/core/config/layout.dart';
 import 'package:yu_health/core/providers/password_visibility_provider.dart';
+import 'package:yu_health/core/utils/assets.dart';
 import 'package:yu_health/core/utils/page_transitions.dart';
 import 'package:yu_health/core/utils/validators.dart';
 import 'package:yu_health/core/widgets/alerts.dart';
 import 'package:yu_health/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/core/widgets/yu_text_button.dart';
 import 'package:yu_health/core/widgets/yu_textfield.dart';
+import 'package:yu_health/screens/enter_emal_for_reset/enter_email_reset_password_page.dart';
 import 'package:yu_health/screens/home/home_page.dart';
 import 'package:yu_health/screens/login_page/bloc/login_bloc.dart';
 import 'package:yu_health/screens/signup_page/signup_page.dart';
@@ -81,6 +83,11 @@ class _LoginPageState extends State<LoginPage> {
                   } else {
                     return Column(
                       children: [
+                        Image.asset(
+                          AssetNames.doctorPhoneImage,
+                          fit: BoxFit.fitHeight,
+                          height: MediaQuery.of(context).size.height / 4,
+                        ),
                         Text(
                           'YuCare',
                           style: Theme.of(context).textTheme.displayMedium,
@@ -124,7 +131,15 @@ class _LoginPageState extends State<LoginPage> {
                         Gap(10.h),
                         YuTextButton(
                           label: 'Forgot password',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              TransitionedRoute(
+                                transitionType: PageTransitionType.slideLeft,
+                                page: const EnterEmailForResetPasswordPage(),
+                              ),
+                            );
+                          },
                         ),
                         Gap(10.h),
                         YuElevatedButton(

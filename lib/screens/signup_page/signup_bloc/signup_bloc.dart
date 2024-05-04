@@ -32,8 +32,8 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         phoneNumber: event.phoneNumber,
       );
       if (userData != null) {
+        await userData.verifyBeforeUpdateEmail(event.email);
         await userData.updateDisplayName(event.firstName);
-        await userData.updateEmail(event.email);
       }
 
       emit(SingupComplete());
@@ -46,6 +46,15 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
               message: 'An account with this email already exists!',
             ),
           );
+          break;
+        case 'invalid-email':
+          emit(
+            const SignupFailed(
+              title: 'Failed to Sign Up',
+              message: 'Email is invalid',
+            ),
+          );
+          break;
         default:
       }
     } catch (err) {

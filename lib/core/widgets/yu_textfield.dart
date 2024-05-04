@@ -20,6 +20,7 @@ class YuTextField extends StatelessWidget {
     this.readOnly,
     this.initialValue,
     this.onTap,
+    this.padding,
   });
 
   final Widget? suffixIcon;
@@ -35,6 +36,7 @@ class YuTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final bool? readOnly;
   final String? initialValue;
+  final EdgeInsetsGeometry? padding;
 
   final void Function()? onTap;
 
@@ -111,16 +113,17 @@ class YuTextField extends StatelessWidget {
           fontWeight: FontWeight.w400,
           fontSize: 14.sp,
           color:
-              Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.75),
+              Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.35),
         ),
 
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
 
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 15.w,
-          vertical: 12.h,
-        ),
+        contentPadding: padding ??
+            EdgeInsets.symmetric(
+              horizontal: 15.w,
+              vertical: 12.h,
+            ),
       ),
     );
   }

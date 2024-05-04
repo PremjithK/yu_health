@@ -32,7 +32,7 @@ class ConsultButton extends StatelessWidget {
           ),
           Gap(10.w),
           Text(
-            'Consult Now',
+            'Instant Meeting',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,

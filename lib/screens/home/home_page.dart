@@ -8,6 +8,7 @@ import 'package:yu_health/screens/home/sub_pages/dashboard_page/dashboard_page.d
 import 'package:yu_health/screens/home/sub_pages/doctors_page/doctors_page.dart';
 import 'package:yu_health/screens/home/sub_pages/feed_page/feed_page.dart';
 import 'package:yu_health/screens/home/sub_pages/profile_page/profile_page.dart';
+import 'package:yu_health/screens/search_doctors/search_doctors_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const DashboardPage(key: Key('dashboard')),
-    const DoctorsPage(key: Key('find_doctors')),
+    const SearchDoctorsPage(key: Key('search_doctors')),
     const FeedPage(key: Key('feed_page')),
     const ProfilePage(key: Key('my_profile')),
   ];

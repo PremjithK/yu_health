@@ -33,7 +33,7 @@ class DashGridItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(ButtonLayout.borderRadius),
           color: theme.background,
           border: Border.all(
-            color: theme.primary.withOpacity(0.5),
+            color: theme.onBackground.withOpacity(0.25),
           ),
           boxShadow: [
             BoxShadow(

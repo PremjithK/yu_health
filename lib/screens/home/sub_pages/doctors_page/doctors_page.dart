@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:yu_health/core/config/layout.dart';
+import 'package:yu_health/core/utils/page_transitions.dart';
 import 'package:yu_health/core/widgets/yu_banner_dash_item.dart';
 import 'package:yu_health/core/widgets/yu_dash_grid_item.dart';
+import 'package:yu_health/screens/search_doctors/search_doctors_page.dart';
 
 class DoctorsPage extends StatelessWidget {
   const DoctorsPage({super.key});
@@ -13,7 +15,7 @@ class DoctorsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Doctors'),
+        title: const Text('Consult'),
       ),
       body: SingleChildScrollView(
         padding: PageLayout.pagePadding,
@@ -21,9 +23,17 @@ class DoctorsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DashBannerItem(
-              onTap: () {},
-              icon: const Icon(Icons.medical_information),
+              icon: const Icon(Icons.search),
               title: 'Search Doctors',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  TransitionedRoute(
+                    page: const SearchDoctorsPage(),
+                    transitionType: PageTransitionType.slideLeft,
+                  ),
+                );
+              },
             ),
             Gap(20.h),
             GridView(
