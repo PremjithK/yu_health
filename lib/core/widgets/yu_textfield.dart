@@ -21,6 +21,7 @@ class YuTextField extends StatelessWidget {
     this.initialValue,
     this.onTap,
     this.padding,
+    this.maxLength,
   });
 
   final Widget? suffixIcon;
@@ -33,6 +34,7 @@ class YuTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final int? maxLines;
+  final int? maxLength;
   final void Function(String)? onChanged;
   final bool? readOnly;
   final String? initialValue;
@@ -57,6 +59,8 @@ class YuTextField extends StatelessWidget {
       keyboardType: keyboardType,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       maxLines: maxLines,
+
+      maxLength: maxLength ?? 99,
       //Events
       onChanged: onChanged,
 
@@ -70,7 +74,9 @@ class YuTextField extends StatelessWidget {
 
       //Decoration
       decoration: InputDecoration(
+        counterText: "",
         enabled: enabled,
+
         //& Disabled Border
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(ButtonLayout.borderRadius),
