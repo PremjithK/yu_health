@@ -1,9 +1,9 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:yu_health/domain/repositories/auth_repository.dart';
 
 part 'login_event.dart';
@@ -25,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final email = event.email;
     final password = event.password;
     final result = await AuthRepository().login(email, password);
-    debugPrint(result);
+    log('Email Verified ${result.toString()}');
     // Error handling
     if (result == 'user-not-found') {
       emit(
@@ -48,11 +48,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           message: 'Invalid credentials, Please check your email and password',
         ),
       );
-    } else if (result == null) {
-      if (!FirebaseAuth.instance.currentUser!.emailVerified) {
-        emit(EmailNotVerified());
-      }
-      emit(LoginSuccess());
+    } else if (!FirebaseAuth.instance.currentUser!.emailVerified) {
+      emit(EmailNotVerified());
+    } else {
+      emit(
+        const LoginFailed(
+          message: 'Unexpected Error occured',
+          title: 'Login Failed',
+        ),
+      );
     }
+
+    emit(LoginSuccess());
   }
 }

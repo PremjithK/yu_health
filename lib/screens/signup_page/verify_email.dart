@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:yu_health/core/config/text_theme.dart';
 import 'package:yu_health/core/utils/page_transitions.dart';
 import 'package:yu_health/core/widgets/yu_elevated_button.dart';
 import 'package:yu_health/screens/home/home_page.dart';
+import 'package:yu_health/screens/login_page/login_page.dart';
 import 'package:yu_health/screens/signup_page/signup_bloc/signup_bloc.dart';
 
 class EmailVerificationPage extends StatefulWidget {
@@ -77,7 +80,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                     );
                   }
                   if (snapshot.hasData) {
-                    debugPrint(snapshot.data?.emailVerified.toString());
+                    log(snapshot.data!.emailVerified.toString());
                     if (snapshot.data!.emailVerified) {
                       return YuElevatedButton(
                         width: 150.w,
@@ -92,14 +95,35 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                         },
                       );
                     } else {
-                      return Text(
-                        'Waiting for confirmation...',
-                        style: textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onBackground
-                              .withOpacity(0.5),
-                        ),
+                      return Column(
+                        children: [
+                          Text(
+                            'Waiting for confirmation...',
+                            style: textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onBackground
+                                  .withOpacity(0.5),
+                            ),
+                          ),
+                          Gap(15.h),
+                          // YuElevatedButton(
+                          //   width: double.infinity,
+                          //   label: 'Resend Email',
+                          //   onPressed: () async{
+                          //     await FirebaseAuth.instance.currentUser!
+                          //         .sendEmailVerification();
+                          //   },
+                          // ),
+                          YuElevatedButtonAlt(
+                            width: double.infinity,
+                            label: 'Cancel',
+                            onPressed: () {
+                              Navigator.push(context,
+                                  TransitionedRoute(page: const LoginPage()));
+                            },
+                          ),
+                        ],
                       );
                     }
                   } else {

@@ -19,11 +19,13 @@ import 'package:yu_health/screens/login_page/login_page.dart';
 import 'package:yu_health/screens/signup_page/provider/signup_form_provider.dart';
 import 'package:yu_health/screens/signup_page/signup_bloc/signup_bloc.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -31,7 +33,8 @@ void main() async {
         BlocProvider(create: (context) => SignupBloc()),
         BlocProvider(create: (context) => ResetPassEmailBloc()),
         ChangeNotifierProvider(
-            create: (context) => ThemeProvider()..getTheme()),
+          create: (context) => ThemeProvider()..getTheme(),
+        ),
         ChangeNotifierProvider(create: (context) => GenderPickerProvider()),
         ChangeNotifierProvider(create: (context) => ObscurePasswordProvider()),
         ChangeNotifierProvider(create: (context) => DatePickerProvider()),

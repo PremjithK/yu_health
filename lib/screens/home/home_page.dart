@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yu_health/core/widgets/yu_bottom_navbar.dart';
 import 'package:yu_health/screens/home/cubit/page_switcher_cubit.dart';
 import 'package:yu_health/screens/home/sub_pages/dashboard_page/dashboard_page.dart';
-import 'package:yu_health/screens/home/sub_pages/doctors_page/doctors_page.dart';
 import 'package:yu_health/screens/home/sub_pages/feed_page/feed_page.dart';
 import 'package:yu_health/screens/home/sub_pages/profile_page/profile_page.dart';
 import 'package:yu_health/screens/search_doctors/search_doctors_page.dart';
